@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json.Linq;
 
-namespace GL.NameValueTools
+namespace GL.KeyValueTools
 {
     public static class KeyValueBinder
     {

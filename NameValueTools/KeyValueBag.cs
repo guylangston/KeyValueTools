@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 
-namespace GL.NameValueTools
+namespace GL.KeyValueTools
 {
     /// <summary>
     /// Does not allow many-keys

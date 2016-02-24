@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GL.NameValueTools
+namespace GL.KeyValueTools
 {
     [TestFixture]
     public class KeyValueBinderTests

@@ -1,6 +1,6 @@
-using System.Web.UI.WebControls;
+using System.Linq;
 
-namespace GL.NameValueTools
+namespace GL.KeyValueTools
 {
     public class KeyValueReflection
     {
@@ -8,8 +8,18 @@ namespace GL.NameValueTools
         {
             var type = typeof (T);
             int misses = 0;
-            foreach (var prop in type.GetProperties())
+            var props = type.GetProperties();
+            foreach (var pair in bag)
             {
+                var p = props.FirstOrDefault(x => x.Name == pair.Key);
+                if (p != null)
+                {
+                    p.SetValue(obj, pair.Value); 
+                }
+                else
+                {
+                    misses++;
+                }
                 
             }
             return misses;

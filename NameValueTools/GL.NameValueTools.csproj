@@ -7,8 +7,8 @@
     <ProjectGuid>{FB06874E-B264-4D23-BC7D-26D6B9423EE1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GL.NameValueTools</RootNamespace>
-    <AssemblyName>GL.NameValueTools</AssemblyName>
+    <RootNamespace>GL.KeyValueTools</RootNamespace>
+    <AssemblyName>GL.KeyValueTools</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,10 +53,13 @@
     <Compile Include="KeyValueBinder.cs" />
     <Compile Include="KeyValueBinderTests.cs" />
     <Compile Include="KeyValueReflection.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="KeyValueReflectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
