@@ -54,7 +54,7 @@ namespace GL.KeyValueTools
         public void FromObject_Complex()
         {
             var bag = KeyValueBinder.FromObject(new Inheritance());
-            Assert.AreEqual("GL.NameValueTools.KeyValueBinderTests+SomeOther", bag["Complex"]);
+            Assert.AreEqual("GL.KeyValueTools.KeyValueBinderTests+SomeOther", bag["Complex"]);
         }
 
         [Test]

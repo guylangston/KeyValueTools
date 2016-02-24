@@ -10,9 +10,11 @@ namespace GL.KeyValueTools
         {
             var obj = new KeyValueBinderTests.SomeClass();
 
-            var bag = new KeyValueBag();
-            bag["String"] = "XXX";
-            bag["Integer"] = 543;
+            var bag = new KeyValueBag
+            {
+                ["String"] = "XXX",
+                ["Integer"] = 543
+            };
 
             var reflect = new KeyValueReflection();
             var misses = reflect.SetValues(bag, obj);
