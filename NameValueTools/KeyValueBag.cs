@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
+using System.Web;
+using NUnit.Framework.Internal.Execution;
 
 namespace GL.KeyValueTools
 {
@@ -120,7 +122,22 @@ namespace GL.KeyValueTools
 
         public string ToString(string fmt)
         {
-            throw new NotImplementedException();
+            switch (fmt)
+            {
+                case "url":
+                    var sb = new StringBuilder();
+                    foreach (var pair in this)
+                    {
+                        if (sb.Length > 0) sb.Append("&");
+                        sb.Append(HttpUtility.UrlEncode(pair.Key));
+                        sb.Append("=");
+                        sb.Append(HttpUtility.UrlEncode(pair.Value?.ToString() ?? ""));
+                    }
+                    return sb.ToString();
+                case "cs": return ToString();
+
+                default: throw new NotSupportedException(fmt);
+            }
         }
     }
 }

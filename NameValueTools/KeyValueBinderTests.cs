@@ -90,6 +90,17 @@ namespace GL.KeyValueTools
             Assert.That(bag.ContainsKey("empty2"));
         }
 
+        [Test]
+        public void ToStringXXX()
+        {
+            var bag = new KeyValueBag()
+            {
+                ["Hello"] = "world",
+                ["Age"] = 40
+            };
+            Assert.That(bag.ToString("url"), Is.EqualTo("Hello=world&Age=40"));
+        }
+
 
     }
 }
