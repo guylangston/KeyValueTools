@@ -91,7 +91,32 @@ namespace GL.KeyValueTools
         }
 
         [Test]
-        public void ToStringXXX()
+        public void ToStringCmd()
+        {
+            var bag = new KeyValueBag()
+            {
+                ["Hello"] = "world",
+                ["Age"] = 40
+            };
+            Assert.That(bag.ToString("cmd"), Is.EqualTo("-Hello:world -Age:40"));
+        }
+
+
+        [Test]
+        public void ToStringJSON()
+        {
+            var someClass = new SomeClass();
+            var bag = KeyValueBinder.FromObject(someClass);
+            var actual = bag.ToString("JSON");
+            var expected = JsonConvert.SerializeObject(someClass);
+            Console.WriteLine(actual);
+            Console.WriteLine(expected);
+            Assert.That(actual, Is.EqualTo(expected));
+
+        }
+
+        [Test]
+        public void ToStringUrl()
         {
             var bag = new KeyValueBag()
             {
@@ -99,6 +124,17 @@ namespace GL.KeyValueTools
                 ["Age"] = 40
             };
             Assert.That(bag.ToString("url"), Is.EqualTo("Hello=world&Age=40"));
+        }
+
+        [Test]
+        public void ToStringUrlEncoded()
+        {
+            var bag = new KeyValueBag()
+            {
+                ["Hello"] = "world again",
+                ["Age"] = 40
+            };
+            Assert.That(bag.ToString("url"), Is.EqualTo("Hello=world+again&Age=40"));
         }
 
 

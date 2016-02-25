@@ -5,6 +5,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Web;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework.Internal.Execution;
 
 namespace GL.KeyValueTools
@@ -122,7 +124,7 @@ namespace GL.KeyValueTools
 
         public string ToString(string fmt)
         {
-            switch (fmt)
+            switch (fmt.ToLowerInvariant())
             {
                 case "url":
                     var sb = new StringBuilder();
@@ -134,7 +136,30 @@ namespace GL.KeyValueTools
                         sb.Append(HttpUtility.UrlEncode(pair.Value?.ToString() ?? ""));
                     }
                     return sb.ToString();
-                case "cs": return ToString();
+
+                case "cmd":
+                    var sbCmd = new StringBuilder();
+                    foreach (var pair in this)
+                    {
+                        if (sbCmd.Length > 0) sbCmd.Append(" ");
+                        sbCmd.Append("-");
+                        sbCmd.Append(pair.Key);
+                        sbCmd.Append(":");
+                        sbCmd.Append(pair.Value?.ToString());
+                    }
+                    return sbCmd.ToString();
+
+                case "json":
+                    var tobj = new JObject();
+                    foreach (var pair in this)
+                    {
+                        tobj[pair.Key] = new JValue(pair.Value);
+                    }
+                    return tobj.ToString(Formatting.None);
+
+                case "txt":
+                case "cs":
+                    return ToString();
 
                 default: throw new NotSupportedException(fmt);
             }
