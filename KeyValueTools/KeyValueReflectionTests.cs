@@ -57,5 +57,23 @@ namespace GL.KeyValueTools
             
             Assert.That(misses, Is.EqualTo(1));
         }
+
+
+        [Test]
+        public void MissesGracefullyWithConversion()
+        {
+            var obj = new KeyValueBinderTests.SomeClass();
+
+            var bag = new KeyValueBag
+            {
+                ["Integer"] = "1001"
+            };
+
+            var reflect = new KeyValueReflection();
+            var misses = reflect.SetValues(bag, obj);
+
+            Assert.That(obj.Integer, Is.EqualTo(1001));
+            Assert.That(misses, Is.EqualTo(0));
+        }
     }
 }
